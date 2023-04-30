@@ -1,0 +1,41 @@
+type Funcionario {
+    idFuncionario: ID!
+    status: String!
+    nome: String!
+    tipo: String!
+    usuario: String!
+    senha: Int!
+}
+
+type Query {
+    funcionarios: [Funcionario]!
+    funcionario(idFuncionario: ID!): Funcionario!
+    funcionariosByNome(nome: String!): [Funcionario]!
+    funcionariosByStatus(status: String!): [Funcionario]!
+    searchFuncionarios(filter: FuncionarioFilter): [Funcionario]!
+    confereLogin(login: Login!): Funcionario!
+}
+
+input FuncionarioFilter {
+    status: String
+    nome: String
+}
+
+input Login {
+    usuario: String!
+    senha: Int!
+}
+
+input DadosFuncionario{
+    status: String!
+    nome: String!
+    tipo: String!
+    usuario: String!
+    senha: Int!
+}
+
+type Mutation {
+    createFuncionario(data: DadosFuncionario!): Funcionario!
+    updateFuncionario(idFuncionario: ID!, data: DadosFuncionario!): Funcionario!
+    deleteFuncionario(idFuncionario: ID!): Boolean!
+}

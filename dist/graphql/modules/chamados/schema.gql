@@ -1,0 +1,37 @@
+type Chamado {
+    idChamado: ID!
+    dataHora: String!
+    detalhes: String!
+    idBancada: Int!
+    status: Int!
+    idFuncionario: Int!
+}
+
+type Query {
+    chamados: [Chamado]!
+    chamado(idChamado: ID!): Chamado!
+    chamadosFuncionario(idFuncionario: Int!): [Chamado]!
+    chamadosBancada(idBancada: Int!): [Chamado]!
+    chamadosStatus(status: Int!): [Chamado]!
+    searchChamados(filter: FilterChamados): [Chamado]!
+}
+
+input FilterChamados {
+    idFuncionario: Int
+    idBancada: Int
+    status: Int
+    detalhes: String
+}
+
+input DadosChamado {
+    dataHora: String!
+    detalhes: String!
+    idBancada: Int!
+    status: Int!
+}
+
+type Mutation {
+    createChamado(data: DadosChamado!): Chamado!
+    updateChamado(idChamado: ID!, data: DadosChamado!): Chamado!
+    deleteChamado(idChamado: ID!): Boolean
+}

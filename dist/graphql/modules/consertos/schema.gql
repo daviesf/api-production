@@ -1,0 +1,32 @@
+type Conserto {
+    idConserto: ID!
+    detalhes: String!
+    dataHora: String!
+    idPatrimonio: Int!
+    idFuncionario: Int!
+}
+
+type Query {
+    conserto(idConserto: ID!): Conserto!
+    consertos: [Conserto]
+    consertosByPatrimonio(idPatrimonio: Int!): [Conserto]
+    searchConsertos(filter: ConsertosFilter): [Conserto]
+}
+
+input ConsertosFilter {
+    detalhes: String
+    idPatrimonio: Int
+}
+
+input DadosConserto {
+    detalhes: String!
+    dataHora: String!
+    idPatrimonio: Int!
+    idFuncionario: Int!
+}
+
+type Mutation {
+    createConserto(data: DadosConserto!): Conserto!
+    updateConserto(idConserto: ID!, data: DadosConserto!): Conserto!
+    deleteConserto(idConserto: ID!): Boolean
+}
